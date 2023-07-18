@@ -1,0 +1,1 @@
+export const URL_LINK = "https://buyit-uzyn.onrender.com";

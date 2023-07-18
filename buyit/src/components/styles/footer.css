@@ -1,0 +1,8 @@
+#footer {
+    padding-top: 5%;
+    margin-top: 5%;
+    display: flex;
+    width: 99%;
+    justify-content: space-around;
+    background-color: whitesmoke
+}

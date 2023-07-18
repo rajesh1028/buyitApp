@@ -1,8 +1,10 @@
 import React from 'react'
 
 function useFormSubmit(scriptURL) {
-    const handleSubmit = (e, form, msg) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        const form = document.forms['submit-to-google-sheet'];
+        const msg = document.querySelector("#msg");
         msg.innerHTML = "Message sending";
         fetch(scriptURL, { method: 'POST', body: new FormData(form) })
             .then(response => {
@@ -27,8 +29,6 @@ function useFormSubmit(scriptURL) {
 const Contact = () => {
 
     const scriptURL = 'https://script.google.com/macros/s/AKfycbypBkYjbz8vvr5eF5DINkpGHvmqBrV0_BDpEoejgURlbv2YON9d1afyogQHtbg4x2ft/exec';
-    const form = document.forms['submit-to-google-sheet'];
-    const msg = document.getElementById("msg");
     const handleSubmit = useFormSubmit(scriptURL);
 
     return (
@@ -45,7 +45,7 @@ const Contact = () => {
                         <img src="/assets/images/contact.png" alt="Contact Us" height="300px" width="300px" />
                     </div>
                     <div className="col-md-6">
-                        <form name="submit-to-google-sheet" onSubmit={e => handleSubmit(e, form, msg)}>
+                        <form name="submit-to-google-sheet" onSubmit={e => handleSubmit(e)}>
                             <div class="mb-3">
                                 <label for="exampleForm" class="form-label">Full Name</label>
                                 <input type="text" name="Name" class="form-control" id="exampleForm" placeholder="John Smith" />

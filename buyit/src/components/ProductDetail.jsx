@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useState } from 'react';
-import DATA from '../Data';
-import { useDispatch } from 'react-redux';
 import { addItem, delItem } from '../redux/actions/index'
+import { useSelector, useDispatch } from 'react-redux'
 
 const ProductDetail = () => {
-    const [cartBtn, setCartBtn] = useState("Add to Cart")
+    const [cartBtn, setCartBtn] = useState("Add to Cart");
     {/* Now we need a product id which is pass from the product page. */ }
+    // const [product, setProduct] = useState([]);
     const proid = useParams();
-    const proDetail = DATA.filter(x => x.id == proid.id)
+
+    const products = useSelector(store => {
+        return store.getProducts.products;
+    });
+    const proDetail = products.filter(x => x._id == proid.id);
     const product = proDetail[0];
-    console.log(product);
 
     // We need to store useDispatch in a variable
     const dispatch = useDispatch()

@@ -15,7 +15,7 @@ const Cart = () => {
 
     const cartItems = (cartItem) => {
         return (
-            <div className="px-4 my-5 bg-light rounded-3" key={cartItem.id}>
+            <div className="px-4 my-5 bg-light rounded-3" key={cartItem._id}>
                 <div className="container py-4">
                     <button onClick={() => handleClose(cartItem)} className="btn-close float-end" aria-label="Close"></button>
                     <div className="row justify-content-center">

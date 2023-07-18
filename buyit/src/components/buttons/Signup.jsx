@@ -1,6 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { URL_LINK as url } from '../link';
 
 const Signup = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+
+    async function registerRequest() {
+        try {
+            let res = await fetch(`${url}/users/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password, name })
+            })
+            let data = await res.json();
+            alert(data.msg);
+            return 1;
+
+        } catch (error) {
+            console.log(error);
+            return 0;
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (await registerRequest()) {
+            console.log("successfull");
+        } else {
+            console.log("error in registering");
+        }
+    }
+
     return (
         <div>
             {/* <!-- Button trigger modal --> */}
@@ -26,22 +60,18 @@ const Signup = () => {
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInput" className="form-label">Username</label>
-                                    <input type="text" className="form-control" id="exampleInput" />
+                                    <input onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleInput" />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                    <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" />
+                                    <input onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" id="exampleInputPassword1" />
                                 </div>
-                                <div className="mb-3 form-check">
-                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                                </div>
-                                <button type="submit" className="btn btn-outline-primary w-100 mt-5">Register</button>
+                                <button onClick={handleSubmit} type="submit" className="btn btn-outline-primary w-100 mt-5">Register</button>
                             </form>
                         </div>
                     </div>

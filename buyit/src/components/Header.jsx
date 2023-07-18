@@ -30,7 +30,7 @@ const Header = () => {
                             
                             
                         </ul>
-                    <NavLink className="navbar-brand mx-auto fw-bold" to="/">APPLE MART</NavLink>
+                    <NavLink className="navbar-brand mx-auto fw-bold" to="/">MOBILE MART</NavLink>
                     <Login/>
                     <Signup/>
                     <CartBtn/>
