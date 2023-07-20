@@ -27,8 +27,14 @@ const ProductDetail = () => {
 
     const handleCart = (products, user) => {
         if (cartBtn === "Add to Cart") {
-            addCartItem({ dispatch, user, products: [products._id] });
-            setCartBtn("Remove from Cart")
+            // console.log(state.addItem);
+            // console.log(products._id);
+            if (state.addItem.includes(products._id)) {
+                alert("item already in cart");
+            } else {
+                addCartItem({ dispatch, user, products: [products._id] });
+                setCartBtn("Remove from Cart")
+            }
         }
         else {
             const item = products;

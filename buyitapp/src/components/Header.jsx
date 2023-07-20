@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import CartBtn from './CartBtn'
 
 
 const Header = () => {
+    const [user, setUser] = useState("");
+    if (!user && localStorage.getItem("userID")) {
+        console.log("notuser");
+        setUser(localStorage.getItem("userID"));
+    }
+    console.log(user);
     const handleLogOut = () => {
         localStorage.setItem("token", "");
         localStorage.setItem("userID", "");
+        setUser("");
         alert("Logged out successfully");
     }
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,7 +43,7 @@ const Header = () => {
                         <NavLink className="navbar-brand mx-auto fw-bold" to="/">MOBILE MART</NavLink>
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/login">Login</NavLink>
+                                <NavLink className="nav-link" to="/login">{user ? user : "Login"}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/signup">Register</NavLink>

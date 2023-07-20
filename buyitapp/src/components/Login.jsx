@@ -10,7 +10,6 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const state = useSelector((state) => state.getProducts);
-    let userID = state.userID;
 
     const dispatch = useDispatch();
 

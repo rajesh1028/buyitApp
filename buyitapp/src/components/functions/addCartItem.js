@@ -11,8 +11,8 @@ const addCartItem = ({ dispatch, user, products }) => {
         body: JSON.stringify({ "user": user, "products": products })
     }).then(res => res.json())
         .then(data => {
-            dispatch({ type: "ADDITEM", payload: products });
             console.log(data);
+            dispatch({ type: "ADDITEM", payload: products });
         })
         .catch(error => {
             console.log(error)

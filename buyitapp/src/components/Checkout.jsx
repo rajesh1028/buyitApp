@@ -1,8 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
 
 const Checkout = () => {
-    const state = useSelector((state) => state.addItem)
+    const navigate = useNavigate();
+    const store = useSelector((state) => state.addItem)
+    const products = useSelector(store => {
+        return store.getProducts.products;
+    })
+
+    const state = products.filter(item => store.includes(item._id));
 
     var total = 0;
     const itemList = (item) => {
@@ -15,6 +22,12 @@ const Checkout = () => {
                 <span className="text-muted">${item.price}</span>
             </li>
         );
+    }
+
+    const handleCheckout = (e) => {
+        e.preventDefault();
+        alert("Payment Successfull");
+        navigate("/");
     }
 
     return (
@@ -193,7 +206,7 @@ const Checkout = () => {
 
                             <hr className="my-4" />
 
-                            <button className="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                            <button onClick={handleCheckout} className="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
                         </form>
                     </div>
                 </div>

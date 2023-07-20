@@ -3,10 +3,13 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import getProducts from './functions/getProducts';
+import getCartItems from './functions/getCartItems';
 
 
 const Product = () => {
     const dispatch = useDispatch();
+    const state = useSelector((state) => state);
+    const userID = state.getProducts.userID || localStorage.getItem("userID");
     const [items, setItems] = useState([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false);
@@ -22,6 +25,7 @@ const Product = () => {
     if (!products.length) {
         setLoading(true);
         getProducts({ dispatch, setLoading })
+        getCartItems({ userID, dispatch });
     }
 
     const handleSort = (e) => {
