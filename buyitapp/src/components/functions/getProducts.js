@@ -13,7 +13,7 @@ const getProducts = ({ dispatch, setLoading }) => {
             if (data.data) {
                 dispatch({ type: "GET_PRODUCTS", payload: data.data });
             } else {
-                alert("Login Again: " + data.msg);
+                alert("Login to continue: " + data.msg);
             }
         })
         .catch(error => {

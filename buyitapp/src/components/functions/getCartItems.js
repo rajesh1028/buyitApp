@@ -9,15 +9,15 @@ const getCartItems = ({ userID, dispatch }) => {
         }
     }).then(res => res.json())
         .then(data => {
-            if(data.data.length===0){
+            if (data.data.length === 0) {
                 console.log("no items found");
-            }else{
+            } else {
                 dispatch({ type: "SET_CART", payload: data.data[0].products });
             }
         })
         .catch(error => {
             console.log(error);
-            alert("Failed to fetch data");
+            console.log("Failed to fetch data");
         });
 }
 
